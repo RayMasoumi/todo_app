@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/bindings/my_binding.dart';
@@ -16,13 +17,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      defaultTransition: Transition.leftToRight,
+      defaultTransition: Transition.downToUp,
       getPages: MyRoutes.pages,
       initialBinding: MyBinding(),
       initialRoute: '/home_screen',
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
+    );
+  }
+
+  static void changeColor(Color color, Brightness brightness) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: color, statusBarIconBrightness: brightness),
     );
   }
 }
