@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/constants.dart';
+import 'package:todo_app/widgets/list_view_widget.dart';
+import 'package:todo_app/widgets/add_floating_action_button_widget.dart';
+import 'package:todo_app/widgets/top_home_screen_container_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,71 +11,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: kPrimaryColor,
-        child: const Icon(
-          Icons.add,
-          color: kAccentColor,
-        ),
-      ),
+      floatingActionButton: const AddFABWidget(),
       body: SafeArea(
+        // * we use Stack so the pages can be stacked on each other
         child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
+            const TopHomeScreenContainerWidget(),
             Container(
               width: Get.width,
-              color: kPrimaryColor,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.arrow_back_ios),
-                          color: kAccentColor,
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.menu),
-                          color: kAccentColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 20, top: 10),
-                    child: const CircleAvatar(
-                      radius: 28,
-                      backgroundColor: kAccentColor,
-                      child: Icon(
-                        Icons.playlist_add_check,
-                        color: kPrimaryColor,
-                        size: 47,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 38, top: 25.0),
-                    child: Text(
-                      'All',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: kAccentColor),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 38, top: 10.0),
-                    child: Text(
-                      'n Tasks',
-                      style: TextStyle(color: kAccentColor),
-                    ),
-                  ),
-                ],
+              height: Get.height * 0.60,
+              decoration: const BoxDecoration(
+                color: kAccentColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35.0),
+                  topRight: Radius.circular(35.0),
+                ),
               ),
-            )
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: ListViewWidget(),
+              ),
+            ),
           ],
         ),
       ),
