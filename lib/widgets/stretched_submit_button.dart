@@ -24,7 +24,7 @@ class StretchedSubmitButton extends StatelessWidget {
         onPressed: () {
           // * check if the user is editing or adding new task:
           if (Get.find<TaskController>().isEditing.value) {
-            //! creating a task to edit:
+            //! creating a temp task to edit:
             var task = Get.find<TaskController>()
                 .tasks[Get.find<TaskController>().index.value];
             // * edit:
@@ -33,6 +33,9 @@ class StretchedSubmitButton extends StatelessWidget {
             // ? taskSubtitle:
             task.taskSubtitle =
                 Get.find<TextFieldController>().taskSubtitle!.text;
+            //
+            Get.find<TaskController>()
+                .tasks[Get.find<TaskController>().index.value] = task;
           } else {
             // * add new:
             Get.find<TaskController>().tasks.add(
