@@ -4,13 +4,18 @@ import 'package:todo_app/constants.dart';
 class CustomTextFieldWidget extends StatelessWidget {
   final int maxLines;
   final IconData icon;
+  final TextEditingController controller;
   const CustomTextFieldWidget(
-      {required this.icon, this.maxLines = 1, super.key});
+      {required this.icon,
+      required this.controller,
+      this.maxLines = 1,
+      super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
       child: TextField(
+        controller: controller,
         cursorColor: kPrimaryColor,
         cursorHeight: 30.0,
         decoration: InputDecoration(

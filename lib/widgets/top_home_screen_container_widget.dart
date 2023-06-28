@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/constants.dart';
+import 'package:todo_app/controllers/task_controller.dart';
 
 class TopHomeScreenContainerWidget extends StatelessWidget {
   const TopHomeScreenContainerWidget({
@@ -53,12 +54,14 @@ class TopHomeScreenContainerWidget extends StatelessWidget {
                   TextStyle(fontWeight: FontWeight.bold, color: kAccentColor),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 38, top: 10.0),
-            child: Text(
-              'n Tasks',
-              style: TextStyle(color: kAccentColor),
-            ),
+          Padding(
+            padding: const EdgeInsets.only(left: 38, top: 10.0),
+            child: Obx(() {
+              return Text(
+                '${Get.find<TaskController>().tasks.length} Tasks',
+                style: const TextStyle(color: kAccentColor),
+              );
+            }),
           ),
         ],
       ),
